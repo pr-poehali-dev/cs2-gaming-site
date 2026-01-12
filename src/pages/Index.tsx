@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [donationAmount, setDonationAmount] = useState('');
@@ -64,11 +65,12 @@ const Index = () => {
               <h1 className="text-2xl font-bold text-gradient-gold">CS2 Project</h1>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              <a href="#hero" className="text-gray-300 hover:text-[#FFB800] transition-colors">Главная</a>
-              <a href="#donate" className="text-gray-300 hover:text-[#FFB800] transition-colors">Донат</a>
-              <a href="#vip" className="text-gray-300 hover:text-[#FFB800] transition-colors">VIP</a>
-              <a href="#ratings" className="text-gray-300 hover:text-[#FFB800] transition-colors">Рейтинг</a>
-              <a href="#social" className="text-gray-300 hover:text-[#FFB800] transition-colors">Сообщество</a>
+              <a href="#hero" className="text-[#FFB800] font-semibold">Главная</a>
+              <Link to="/vip" className="text-gray-300 hover:text-[#FFB800] transition-colors">VIP</Link>
+              <Link to="/cases" className="text-gray-300 hover:text-[#FFB800] transition-colors">Кейсы</Link>
+              <Link to="/tickets" className="text-gray-300 hover:text-[#FFB800] transition-colors">Тикеты</Link>
+              <Link to="/clans" className="text-gray-300 hover:text-[#FFB800] transition-colors">Кланы</Link>
+              <Link to="/rules" className="text-gray-300 hover:text-[#FFB800] transition-colors">Правила</Link>
             </nav>
             <Button className="bg-gradient-gold text-[#0A0E1A] font-semibold hover:opacity-90">
               Играть сейчас
@@ -89,10 +91,24 @@ const Index = () => {
             <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Лучший <span className="text-gradient-gold">CS2</span> сервер<br />для настоящих про
             </h2>
-            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 mb-4 max-w-2xl mx-auto">
               Уникальные режимы игры, честная статистика и активное сообщество. Присоединяйся к тысячам игроков!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            <Card className="bg-[#1A1F2C] border-[#FFB800] max-w-md mx-auto mb-8">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <Icon name="Server" size={24} className="text-[#FFB800]" />
+                  <h3 className="text-xl font-bold">IP сервера</h3>
+                </div>
+                <div className="bg-[#0A0E1A] p-4 rounded-lg border border-[#2A2F3C] mb-3">
+                  <code className="text-[#FFB800] text-2xl font-bold font-mono">play.cs2project.ru</code>
+                </div>
+                <p className="text-sm text-gray-400">Скопируй и вставь в консоль CS2</p>
+              </CardContent>
+            </Card>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="bg-gradient-gold text-[#0A0E1A] font-bold text-lg px-8 hover-glow">
                 <Icon name="Play" size={20} className="mr-2" />
                 Начать играть
@@ -101,6 +117,19 @@ const Index = () => {
                 <Icon name="Info" size={20} className="mr-2" />
                 Подробнее
               </Button>
+            </div>
+            
+            <div className="flex items-center justify-center gap-6 text-sm">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  className={`flex items-center gap-2 text-gray-400 hover:text-white transition-colors ${social.color}`}
+                >
+                  <Icon name={social.icon as any} size={20} />
+                  <span className="hidden sm:inline">{social.name}</span>
+                </a>
+              ))}
             </div>
           </div>
 
